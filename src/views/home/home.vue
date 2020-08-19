@@ -6,7 +6,8 @@
     <home-swiper :spiritualMassage="spiritualMassage" />
     <home-second :atmosphere="atmosphere" />
     <home-third/>
-    <tab-control class="tab-control" :title="['流行','新款','精选']"/>
+    <tab-control class="tab-control" :title="['微凉','月光','睡眠','精神']" @tabclick="tabclick"/>
+    <goods-list :message="message[currentType]"/>
     <ul>
       <li>123</li>
       <li>123</li>
@@ -69,6 +70,7 @@ import HomeThird from "./homeChildren/HomeThird";
 
 import NavBar from 'components/common/navbar/NavBar';
 import TabControl from 'components/content/tabcontrol/TabControl';
+import GoodsList from "components/content/goods/GoodsList";
 
 import getHomeMultidata from 'network/home'
 export default {
@@ -79,13 +81,21 @@ export default {
     HomeThird,
     NavBar,
     TabControl,
+    GoodsList,
   },
   data(){
     return {
       atmosphere:[],
-      moonlight_guitar:[],
+      moonlightguitar:[],
       spa_deep_sleep:[],
-      spiritualMassage:[]
+      spiritualMassage:[],
+      message:{
+        'atmosphere':[],
+        'moonlight_guitar':[],
+        'spa_deep_sleep':[],
+        'spiritual_massage':[]
+      },
+      currentType:"atmosphere"
     };
   },
   created(){
@@ -93,10 +103,36 @@ export default {
     this.getHomeMultidata()
   },
   methods: {
+    /**
+     * 事件监听相关的方法
+     */
+    tabclick(index){
+      switch (index) {
+        case 0:
+          this.currentType = 'atmosphere'
+          break;
+        case 1:
+          this.currentType = 'moonlight_guitar'
+          break;
+        case 2:
+          this.currentType = 'spa_deep_sleep'
+          break;
+        case 3:
+          this.currentType = 'spiritual_massage'
+          break;  
+      }
+    },
+
+
+    /**
+     * 网络请求相关的方法
+     */
     getHomeMultidata(){
       getHomeMultidata().then(res => {
+        this.message = res;
+        console.log(this.message);
         this.atmosphere = res.atmosphere;
-        this.moonlight_guitar =res.moonlight_guitar;
+        this.moonlightguitar =res.moonlight_guitar;
         this.spa_deep_sleep = res.spa_deep_sleep;
         this.spiritualMassage = res.spiritual_massage;
       })

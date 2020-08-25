@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <img :src="messageItem.poster" alt="">
+    <img :src="messageItem.poster" alt="" @load="ImageLoad">
     <div>
       <p>{{messageItem.title}}</p>
     </div>
@@ -26,7 +26,9 @@ export default {
     };
   },
   methods: {
-
+    ImageLoad(){
+      this.$bus.$emit('ImageRefresh')
+    }
   },
   computed: {
 

@@ -1,7 +1,7 @@
 <template>
   <swiper>
     <swiper-item v-for="item in spiritualMassage"> 
-      <img :src="item.poster" alt="">
+      <img :src="item.poster" alt="" @load="swiperImgLoad">
     </swiper-item>
   </swiper>
 </template>
@@ -24,11 +24,15 @@ export default {
   },
   data(){
     return {
-      
+      isLoad:false
     };
   },
   methods: {
-
+    swiperImgLoad(){
+      if(!this.isLoad)
+      this.$emit('swiperImgLoad')
+      this.isLoad = true
+    }
   },
   computed: {
 

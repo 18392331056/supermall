@@ -1,13 +1,14 @@
 <template>
-  <div>
-    {{id}}
+  <div id='details'>
+    <details-nav></details-nav>
   </div>
 </template>
 
 <script>
+import DetailsNav from './detailCpnt/DetailsNav'
 export default {
   components: {
-
+    DetailsNav
   },
   data(){
     return {
@@ -27,5 +28,9 @@ export default {
 </script>
 
 <style  scoped>
-
+  #details{
+    position: relative;
+    z-index: 9;
+    background-color: white;
+  }
 </style>

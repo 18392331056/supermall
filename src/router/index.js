@@ -24,6 +24,10 @@ export default new Router({
     {
       path:"/sort",
       component:() => import ("../views/sort/sort")
+    },
+    {
+      path:"/details/:id",
+      component:() => import ("../views/details/Details")
     }
   ],
   mode:"history"

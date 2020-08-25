@@ -1,5 +1,5 @@
 <template>
-  <div class="item">
+  <div class="item" @click="itemClick">
     <img :src="messageItem.poster" alt="" @load="ImageLoad">
     <div>
       <p>{{messageItem.title}}</p>
@@ -15,7 +15,7 @@ export default {
       default(){
         return {}
       }
-    }
+    },
   },
   components: {
 
@@ -28,6 +28,9 @@ export default {
   methods: {
     ImageLoad(){
       this.$bus.$emit('ImageRefresh')
+    },
+    itemClick(){
+      this.$router.push('/details/'+999)
     }
   },
   computed: {

@@ -75,15 +75,15 @@ export default {
     //请求多个数据
     this.getHomeMultidata()
   },
-  dedtroyed(){
-    console.log("dedtroyed");
-  },
   mounted(){
     //监听item中图片加载完成后进行刷新
     const refresh = debounce(this.$refs.bscroll.refresh,200)
     this.$bus.$on('ImageRefresh',()=>{
       refresh()
     })
+  },
+  dedtroyed(){
+    console.log("dedtroyed");
   },
   methods: {
     /**

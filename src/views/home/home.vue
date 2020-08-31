@@ -137,7 +137,6 @@ export default {
     getHomeMultidata(){
       getHomeMultidata().then(res => {
         this.message = res;
-        console.log(this.message);
         this.atmosphere = res.atmosphere;
         this.moonlightguitar =res.moonlight_guitar;
         this.spa_deep_sleep = res.spa_deep_sleep;

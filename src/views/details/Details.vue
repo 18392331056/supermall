@@ -212,7 +212,7 @@
         <li>新列表100</li>
       </ul>
     </scroll>
-    <details-bottom-bar></details-bottom-bar>
+    <details-bottom-bar @addToCart="addToCart"></details-bottom-bar>
     <back-top @click.native="btnBack()" v-show="isShowBackTop"></back-top>
   </div>
 </template>
@@ -220,8 +220,9 @@
 <script>
 import DetailsNav from './detailCpnt/DetailsNav'
 import DetailsBottomBar from './detailCpnt/DetailsBottomBar'
-import Scroll from 'components/common/scroll/Scroll';
+import Scroll from 'components/common/scroll/Scroll'
 import {backTopMixin} from 'common/utils/mixin.js'
+import getHomeMultidata from 'network/home'
 export default {
   name:"Details",
   components: {
@@ -234,11 +235,14 @@ export default {
     return {
       id:null,
       clickJump:[],
-      currentIndex:0
+      currentIndex:0,
+      data:null
     };
   },
   created(){
     this.id = this.$route.params.id
+    //请求多个数据
+    this.getHomeMultidata()
   },
   mounted(){
     this.clickJump.push(0)
@@ -247,6 +251,13 @@ export default {
     this.clickJump.push(this.$refs.three.offsetTop) 
   },
   methods: {
+    //获取数据
+    getHomeMultidata(){
+      getHomeMultidata().then(res=>{
+        this.data = res
+        console.log(this.data);
+      })
+    },
     //实现点击tab根据index跳转到页面相对位置处
     tabDetailsClick(index){
       this.$refs.dtscroll.scrollTo(0,-this.clickJump[index],200)
@@ -277,6 +288,16 @@ export default {
       }
       //判断BackTop是否需要显示
       this.isShowBackTop = (-position.y) > 800;
+    },
+    addToCart(){
+      console.log(1);
+      const pruduct = {}
+      pruduct.image = this.data.spa_deep_sleep[0].poster;
+      pruduct.title = this.data.spa_deep_sleep[0].title;
+      pruduct.price = 50
+      
+      //将商品添加到购物车里
+      this.$store.commit("addCart",pruduct)
     }
   },
   computed: {

@@ -236,7 +236,7 @@ export default {
       id:null,
       clickJump:[],
       currentIndex:0,
-      data:null
+      data:null,
     };
   },
   created(){
@@ -255,7 +255,6 @@ export default {
     getHomeMultidata(){
       getHomeMultidata().then(res=>{
         this.data = res
-        console.log(this.data);
       })
     },
     //实现点击tab根据index跳转到页面相对位置处
@@ -290,14 +289,13 @@ export default {
       this.isShowBackTop = (-position.y) > 800;
     },
     addToCart(){
-      console.log(1);
       const pruduct = {}
       pruduct.image = this.data.spa_deep_sleep[0].poster;
       pruduct.title = this.data.spa_deep_sleep[0].title;
       pruduct.price = 50
       
       //将商品添加到购物车里
-      this.$store.commit("addCart",pruduct)
+      this.$toast.okShow()
     }
   },
   computed: {

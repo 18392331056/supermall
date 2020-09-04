@@ -9,7 +9,22 @@ const store = new Vuex.Store({
   },
   mutations:{
     addCart(state,payload){
+      payload.checked = true;
       state.cartList.push(payload)
+    }
+  },
+  // mutations:{
+  //   addCart(state,payload){
+  //     return new Promise((resolve,reject)=>{
+  //       payload.checked = true;
+  //       state.cartList.push(payload)
+  //       resolve("weq")
+  //     })
+  //   }
+  // },
+  getters:{
+    GetList(state){
+      return state.cartList
     }
   }
 })

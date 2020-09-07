@@ -293,7 +293,7 @@ export default {
       pruduct.image = this.data.spa_deep_sleep[0].poster;
       pruduct.title = this.data.spa_deep_sleep[0].title;
       pruduct.price = 50
-      
+      this.$store.commit("addCart",pruduct)
       //将商品添加到购物车里
       this.$toast.okShow()
     }

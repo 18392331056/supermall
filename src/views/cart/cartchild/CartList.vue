@@ -38,17 +38,17 @@ export default {
     },
   },
   computed: {
-    GetList:{
-      get(){
-        return this.$store.getters.GetList
-      },
-      set(){
-        this.listData = this.$store.getters.GetList
-      }
-    }
-    // GetList(){
-    //   return this.$store.getters.GetList
+    // GetList:{
+    //   get(){
+    //     return this.$store.getters.GetList
+    //   },
+    //   set(){
+    //     this.listData = this.$store.getters.GetList
+    //   }
     // }
+    GetList(){
+      return this.$store.getters.GetList
+    }
   },
   activated(){
     this.$refs.cartScroll.refresh()

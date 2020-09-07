@@ -31,11 +31,11 @@ export default {
   methods: {
     selectClick(){
       if(this.isAllSelect){//全部选中
-        this.$store.state.cartList.forEach(element => {
+        this.$store.cartList.forEach(element => {
           element.checked = false;
         });
       }else{
-        this.$store.state.cartList.forEach(element => {
+        this.$store.cartList.forEach(element => {
           element.checked = true;
         });
       }
@@ -43,17 +43,17 @@ export default {
   },
   computed: {
     totalPrice(){
-      return this.$store.state.cartList.filter(item=>{
+      // return this.$store.cartList.filter(item=>{
         
-      })
+      // })
     },
     isAllSelect(){
-      if(this.$store.state.cartList.length === 0) return false
-      //方案一
-      // return !(this.$store.state.cartList.filter(item => !item.checked).length)
+      // if(this.$store.cartList.length === 0) return false
+      // //方案一
+      // // return !(this.$store.state.cartList.filter(item => !item.checked).length)
 
-      //方案二
-      return !this.$store.state.cartList.find(item => !item.checked)
+      // //方案二
+      // return !this.$store.cartList.find(item => !item.checked)
     }
   },
 };
